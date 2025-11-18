@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Barber</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header { background: #333; color: #fff; padding: 20px; text-align: center; }
+    main { padding: 20px; }
+    .hidden { display: none; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 10px; text-align: left; }
+    input, select, button { padding: 10px; margin: 5px 0; width: 100%; }
+    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Mr. Barber</h1>
+    <p>Refined grooming experience for men</p>
+</header>
+
+<main>
+<div class="container">
+
+    <!-- Sign In Page -->
+    <div id="signinPage">
+        <h2>Sign In</h2>
+        <select id="userType">
+            <option value="admin">Admin</option>
+            <option value="staff">Staff</option>
+            <option value="customer">Customer</option>
+        </select>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="signIn()">Sign In</button>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="hidden">
+        <h2>Admin Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+        <h3>All Appointments</h3>
+        <table>
+            <thead>
+                <tr><th>Customer</th><th>Service</th><th>Date</th><th>Staff</th></tr>
+            </thead>
+            <tbody id="appointmentsTableAdmin">
+                <tr><td>John</td><td>Haircut</td><td>2025-11-18</td><td>Mike</td></tr>
+                <tr><td>Alex</td><td>Beard Grooming</td><td>2025-11-19</td><td>Sam</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Loyalty Customers</h3>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Points</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>John</td><td>120</td></tr>
+                <tr><td>Alex</td><td>80</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Staff Dashboard -->
+    <div id="staffDashboard" class="hidden">
+        <h2>Staff Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+        <h3>Your Schedule</h3>
+        <table>
+            <thead>
+                <tr><th>Customer</th><th>Service</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>John</td><td>Haircut</td><td>2025-11-18</td></tr>
+                <tr><td>Emily</td><td>Shave</td><td>2025-11-18</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Customer Dashboard -->
+    <div id="customerDashboard" class="hidden">
+        <h2>Customer Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+        <h3>Your Appointments</h3>
+        <table>
+            <thead>
+                <tr><th>Service</th><th>Date</th><th>Staff</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Haircut</td><td>2025-11-18</td><td>Mike</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Loyalty Program</h3>
+        <p>Points: 120</p>
+        <p>Next Reward: Free Beard Grooming</p>
+
+        <h3>Virtual Queue Updates</h3>
+        <p id="queueStatus">You are 2nd in line.</p>
+    </div>
+
+</div>
+</main>
+
+<script>
+function signIn() {
+    const userType = document.getElementById("userType").value;
+    document.getElementById("signinPage").classList.add("hidden");
+    
+    if (userType === "admin") {
+        document.getElementById("adminDashboard").classList.remove("hidden");
+    } else if (userType === "staff") {
+        document.getElementById("staffDashboard").classList.remove("hidden");
+    } else if (userType === "customer") {
+        document.getElementById("customerDashboard").classList.remove("hidden");
+    }
+}
+
+function logout() {
+    document.getElementById("signinPage").classList.remove("hidden");
+    document.getElementById("adminDashboard").classList.add("hidden");
+    document.getElementById("staffDashboard").classList.add("hidden");
+    document.getElementById("customerDashboard").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
